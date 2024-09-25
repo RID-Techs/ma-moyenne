@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./calc.css">
+    <title>Grade</title>
+</head>
+<body>
+    <header>
+
+        <div class="site-info">
+            <h1><span id="average-icon">📑</span> Ma Moyenne</h1>
+            <div class="website-creator">
+                <p>
+                    Powered by 
+                    <a href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
+                        E-learning
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="welcome-message-container">
+            <div class="welcome-message-holder">
+                <div class="welcome-message">
+                    <p id="note">Note Importante</p>
+
+                    <div id="message-content">
+                        <p>
+
+                            <strong><em><span id="average-icon">📑</span> Ma Moyenne</em></strong> est un site web à but non lucratif et purement éducatif, mis en place par <a id="website-owner" href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
+                                E-learning
+                            </a> pour permettre aux étudiants de calculer facilement leur moyenne, afin de leur permettre d'analyser leur niveau de travail et de s'améliorer progressivement. Les étudiants peuvent se sentir en sécurité sur le site, car leurs données ne sont pas collectées.
+                        </p>
+                        <div class="btn-group">
+                            <button id="simple-btn" type="button">Hi</button>
+                            <button id="next-btn" type="button">Suivant</button>
+                        </div>
+                    </div>
+
+                <div id="message-content-2">
+                    <p>
+
+                        <a id="website-owner" href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
+                            E-learning
+                        </a> est un site web d'apprentissage dédié à tout étudiant(e) du département d'Études Anglophones, visant à permettre aux étudiants de ce département de mieux comprendre leurs cours, de retransmettre les connaissances acquises par le biais des docteurs, et de valider avec aisance les Unités d'Enseignement.
+                    </p>
+                    <div class="btn-group">
+                        <button id="prev-btn" type="button">Précédent</button>
+                        <button id="close-btn" type="button">Fermer</button>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    
+        <div class="error-message">
+            <div class="holder">
+                <div class="wrapper">
+                    <p id="warning-header"> <span><svg id="icons" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+                        <path d="M16 2.899l13.409 26.726h-26.819l13.409-26.726zM16 0c-0.69 0-1.379 0.465-1.903 1.395l-13.659 27.222c-1.046 1.86-0.156 3.383 1.978 3.383h27.166c2.134 0 3.025-1.522 1.978-3.383h0l-13.659-27.222c-0.523-0.93-1.213-1.395-1.903-1.395v0z"></path>
+                        <path d="M18 26c0 1.105-0.895 2-2 2s-2-0.895-2-2c0-1.105 0.895-2 2-2s2 0.895 2 2z"></path>
+                        <path d="M16 22c-1.105 0-2-0.895-2-2v-6c0-1.105 0.895-2 2-2s2 0.895 2 2v6c0 1.105-0.895 2-2 2z"></path>
+                        </svg></span> Attention</p>
+                    <hr>
+                    <p id="warning-message"></p>
+                    <hr>
+                    <button id="error-btn" type="button">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <p id="container-message"> "Gardez un œil sur votre niveau de travail en calculant facilement votre moyenne."</p>
+
+    <div class="sem-1">
+        <div class="semester-title">
+            <h2>Semestre 1:</h2>
+        </div>
+        <div class="first-section">
+            <div class="Teching-units">
+                <label for="Teaching-unit-number">Nombre de vos Unités d'Enseignement :</label>
+                <div class="add-teaching-unit">
+                    <input type="text" id="Teaching-unit-number" placeholder="20">
+                <button id="create-inputs-btn" type="button">Valider</button>
+                </div>
+            </div>
+    
+            <div class="all-inputs"></div>
+    
+            <div class="calculate-section">
+                <p id="guide-message">Entrez vos notes dans les champs ci-dessus en sélectionnant bien évidemment leurs crédits, puis cliquez sur "Calculer" pour obtenir votre moyenne.</p>
+                <div class="calculate-btn">
+                    <button id="reset-btn" type="button">Réinitialiser</button>
+                    <button id="display-result" type="button">Calculer</button>
+                </div>
+                <div class="grades-dislpay-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span>----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 1 : <span>----</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result-section-holder">
+        <div class="result-section">
+            <div class="spinner">
+                <div id="spinner"></div>
+            </div>
+            <div class="after-spinner">
+                <div class="actual-grade-display-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span id="Marks">----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 1 : <span id="Average">----</span></p>
+                    </div>
+                </div>
+                <div class="calculate-btn">
+                    <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="sem-2">
+        <div class="semester-title">
+            <h2>Semestre 2:</h2>
+        </div>
+        <div class="first-section">
+            <div class="Teching-units">
+                <label for="Teaching-unit-number">Nombre de vos Unités d'Enseignement :</label>
+                <div class="add-teaching-unit">
+                    <input type="text" id="Teaching-unit-number" placeholder="20">
+                <button id="create-inputs-btn" type="button">Valider</button>
+                </div>
+            </div>
+    
+            <div class="all-inputs"></div>
+    
+            <div class="calculate-section">
+                <p id="guide-message">Entrez vos notes dans les champs ci-dessus en sélectionnant bien évidemment leurs crédits, puis cliquez sur "Calculer" pour obtenir votre moyenne.</p>
+                <div class="calculate-btn">
+                    <button id="reset-btn" type="button">Réinitialiser</button>
+                    <button id="display-result" type="button">Calculer</button>
+                </div>
+                <div class="grades-dislpay-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span>----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 2 : <span>----</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result-section-holder">
+        <div class="result-section">
+            <div class="spinner">
+                <div id="spinner"></div>
+            </div>
+            <div class="after-spinner">
+                <div class="actual-grade-display-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span id="Marks">----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 2 : <span id="Average">----</span></p>
+                    </div>
+                </div>
+                <div class="calculate-btn">
+                    <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="sem-1-and-2">
+        <h2 class="annual-title">Moyenne Anuelle : Semestres 1 & 2</h2>
+        <hr>
+        <div class="Yearly-grade-section-holder">
+            <div class="grades-section">
+                <div class="spinner">
+                    <div id="spinner"></div>
+                </div>
+                <div class="all-grades-after-spinner">
+                    <div class="all-grades-display-section">
+                        <div class="moyenne">
+                            <p>Nombre de points : <span id="Marks">----</span></p>
+                        </div>
+                        <div class="moyenne">
+                            <p>Moyenne annuelle : <span id="Average">----</span></p>
+                        </div>
+                    </div>
+                    <div class="calculate-annual">
+                        <button id="calculate-annual-grade" type="button">Calculer ma moyenne annuelle</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <hr>
+
+    <div class="sem-3">
+        <div class="semester-title">
+            <h2>Semestre 3:</h2>
+        </div>
+        <div class="first-section">
+            <div class="Teching-units">
+                <label for="Teaching-unit-number">Nombre de vos Unités d'Enseignement :</label>
+                <div class="add-teaching-unit">
+                    <input type="text" id="Teaching-unit-number" placeholder="20">
+                <button id="create-inputs-btn" type="button">Valider</button>
+                </div>
+            </div>
+    
+            <div class="all-inputs"></div>
+    
+            <div class="calculate-section">
+                <p id="guide-message">Entrez vos notes dans les champs ci-dessus en sélectionnant bien évidemment leurs crédits, puis cliquez sur "Calculer" pour obtenir votre moyenne.</p>
+                <div class="calculate-btn">
+                    <button id="reset-btn" type="button">Réinitialiser</button>
+                    <button id="display-result" type="button">Calculer</button>
+                </div>
+                <div class="grades-dislpay-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span>----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 3 : <span>----</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result-section-holder">
+        <div class="result-section">
+            <div class="spinner">
+                <div id="spinner"></div>
+            </div>
+            <div class="after-spinner">
+                <div class="actual-grade-display-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span id="Marks">----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 3 : <span id="Average">----</span></p>
+                    </div>
+                </div>
+                <div class="calculate-btn">
+                    <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="sem-4">
+        <div class="semester-title">
+            <h2>Semestre 4:</h2>
+        </div>
+        <div class="first-section">
+            <div class="Teching-units">
+                <label for="Teaching-unit-number">Nombre de vos Unités d'Enseignement :</label>
+                <div class="add-teaching-unit">
+                    <input type="text" id="Teaching-unit-number" placeholder="20">
+                <button id="create-inputs-btn" type="button">Valider</button>
+                </div>
+            </div>
+    
+            <div class="all-inputs"></div>
+    
+            <div class="calculate-section">
+                <p id="guide-message">Entrez vos notes dans les champs ci-dessus en sélectionnant bien évidemment leurs crédits, puis cliquez sur "Calculer" pour obtenir votre moyenne.</p>
+                <div class="calculate-btn">
+                    <button id="reset-btn" type="button">Réinitialiser</button>
+                    <button id="display-result" type="button">Calculer</button>
+                </div>
+                <div class="grades-dislpay-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span>----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 4 : <span>----</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result-section-holder">
+        <div class="result-section">
+            <div class="spinner">
+                <div id="spinner"></div>
+            </div>
+            <div class="after-spinner">
+                <div class="actual-grade-display-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span id="Marks">----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 4 : <span id="Average">----</span></p>
+                    </div>
+                </div>
+                <div class="calculate-btn">
+                    <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="sem-3-and-4">
+        <h2 class="annual-title">Moyenne Anuelle : Semestres 3 & 4</h2>
+        <hr>
+        <div class="Yearly-grade-section-holder">
+            <div class="grades-section">
+                <div class="spinner">
+                    <div id="spinner"></div>
+                </div>
+                <div class="all-grades-after-spinner">
+                    <div class="all-grades-display-section">
+                        <div class="moyenne">
+                            <p>Nombre de points : <span id="Marks">----</span></p>
+                        </div>
+                        <div class="moyenne">
+                            <p>Moyenne annuelle : <span id="Average">----</span></p>
+                        </div>
+                    </div>
+                    <div class="calculate-annual">
+                        <button id="calculate-annual-grade" type="button">Calculer ma moyenne annuelle</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <hr>
+
+    <div class="sem-5">
+        <div class="semester-title">
+            <h2>Semestre 5:</h2>
+        </div>
+        <div class="first-section">
+            <div class="Teching-units">
+                <label for="Teaching-unit-number">Nombre de vos Unités d'Enseignement :</label>
+                <div class="add-teaching-unit">
+                    <input type="text" id="Teaching-unit-number" placeholder="20">
+                <button id="create-inputs-btn" type="button">Valider</button>
+                </div>
+            </div>
+    
+            <div class="all-inputs"></div>
+    
+            <div class="calculate-section">
+                <p id="guide-message">Entrez vos notes dans les champs ci-dessus en sélectionnant bien évidemment leurs crédits, puis cliquez sur "Calculer" pour obtenir votre moyenne.</p>
+                <div class="calculate-btn">
+                    <button id="reset-btn" type="button">Réinitialiser</button>
+                    <button id="display-result" type="button">Calculer</button>
+                </div>
+                <div class="grades-dislpay-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span>----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 5 : <span>----</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result-section-holder">
+        <div class="result-section">
+            <div class="spinner">
+                <div id="spinner"></div>
+            </div>
+            <div class="after-spinner">
+                <div class="actual-grade-display-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span id="Marks">----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 5 : <span id="Average">----</span></p>
+                    </div>
+                </div>
+                <div class="calculate-btn">
+                    <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="sem-6">
+        <div class="semester-title">
+            <h2>Semestre 6:</h2>
+        </div>
+        <div class="first-section">
+            <div class="Teching-units">
+                <label for="Teaching-unit-number">Nombre de vos Unités d'Enseignement :</label>
+                <div class="add-teaching-unit">
+                    <input type="text" id="Teaching-unit-number" placeholder="20">
+                <button id="create-inputs-btn" type="button">Valider</button>
+                </div>
+            </div>
+    
+            <div class="all-inputs"></div>
+    
+            <div class="calculate-section">
+                <p id="guide-message">Entrez vos notes dans les champs ci-dessus en sélectionnant bien évidemment leurs crédits, puis cliquez sur "Calculer" pour obtenir votre moyenne.</p>
+                <div class="calculate-btn">
+                    <button id="reset-btn" type="button">Réinitialiser</button>
+                    <button id="display-result" type="button">Calculer</button>
+                </div>
+                <div class="grades-dislpay-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span>----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 6 : <span>----</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result-section-holder">
+        <div class="result-section">
+            <div class="spinner">
+                <div id="spinner"></div>
+            </div>
+            <div class="after-spinner">
+                <div class="actual-grade-display-section">
+                    <div class="moyenne">
+                        <p>Nombre de points : <span id="Marks">----</span></p>
+                    </div>
+                    <div class="moyenne">
+                        <p>Moyenne du Semestre 6 : <span id="Average">----</span></p>
+                    </div>
+                </div>
+                <div class="calculate-btn">
+                    <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="sem-5-and-6">
+        <h2 class="annual-title">Moyenne Anuelle : Semestres 5 & 6</h2>
+        <hr>
+        <div class="Yearly-grade-section-holder">
+            <div class="grades-section">
+                <div class="spinner">
+                    <div id="spinner"></div>
+                </div>
+                <div class="all-grades-after-spinner">
+                    <div class="all-grades-display-section">
+                        <div class="moyenne">
+                            <p>Nombre de points : <span id="Marks">----</span></p>
+                        </div>
+                        <div class="moyenne">
+                            <p>Moyenne annuelle : <span id="Average">----</span></p>
+                        </div>
+                    </div>
+                    <div class="calculate-annual">
+                        <button id="calculate-annual-grade" type="button">Calculer ma moyenne annuelle</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <hr>
+
+    <div class="all-semesters">
+        <h2 class="general-grade-title">Moyenne générale : Semestre 1 à 6 (180 crédits) </h2>
+        <hr>
+        <div class="Yearly-grade-section-holder">
+            <div class="grades-section">
+                <div class="spinner">
+                    <div id="spinner"></div>
+                </div>
+                <div class="all-totalgrades-after-spinner">
+                    <div class="all-grades-display-section">
+                        <div class="moyenne">
+                            <p>Nombre de points : <span id="Marks">----</span></p>
+                        </div>
+                        <div class="moyenne">
+                            <p>Moyenne annuelle : <span id="Average">----</span></p>
+                        </div>
+                    </div>
+                    <div class="calculate-annual">
+                        <button id="calculate-all-semesters-grade" type="button">Calculer ma moyenne générale</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2024 | Powered By <a id="website-owner" href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
+        E-learning
+    </a></p>
+    <p>| All Rights Reserved</p>
+    <div>
+        <a class="suggetions-container" href="https://wa.me/+22879836219?text=Salut, J'ai des suggestions à propos du site «Ma Moyenne».">
+            <svg id="whatsapp-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                <path d="M27.281 4.65c-2.994-3-6.975-4.65-11.219-4.65-8.738 0-15.85 7.112-15.85 15.856 0 2.794 0.731 5.525 2.119 7.925l-2.25 8.219 8.406-2.206c2.319 1.262 4.925 1.931 7.575 1.931h0.006c0 0 0 0 0 0 8.738 0 15.856-7.113 15.856-15.856 0-4.238-1.65-8.219-4.644-11.219zM16.069 29.050v0c-2.369 0-4.688-0.637-6.713-1.837l-0.481-0.288-4.987 1.306 1.331-4.863-0.313-0.5c-1.325-2.094-2.019-4.519-2.019-7.012 0-7.269 5.912-13.181 13.188-13.181 3.519 0 6.831 1.375 9.319 3.862 2.488 2.494 3.856 5.8 3.856 9.325-0.006 7.275-5.919 13.188-13.181 13.188zM23.294 19.175c-0.394-0.2-2.344-1.156-2.706-1.288s-0.625-0.2-0.894 0.2c-0.262 0.394-1.025 1.288-1.256 1.556-0.231 0.262-0.462 0.3-0.856 0.1s-1.675-0.619-3.188-1.969c-1.175-1.050-1.975-2.35-2.206-2.744s-0.025-0.613 0.175-0.806c0.181-0.175 0.394-0.463 0.594-0.694s0.262-0.394 0.394-0.662c0.131-0.262 0.069-0.494-0.031-0.694s-0.894-2.15-1.219-2.944c-0.319-0.775-0.65-0.669-0.894-0.681-0.231-0.012-0.494-0.012-0.756-0.012s-0.694 0.1-1.056 0.494c-0.363 0.394-1.387 1.356-1.387 3.306s1.419 3.831 1.619 4.1c0.2 0.262 2.794 4.269 6.769 5.981 0.944 0.406 1.681 0.65 2.256 0.837 0.95 0.3 1.813 0.256 2.494 0.156 0.762-0.113 2.344-0.956 2.675-1.881s0.331-1.719 0.231-1.881c-0.094-0.175-0.356-0.275-0.756-0.475z"></path>
+                </svg> <button id="suggestions" type="button">Impression & Suggestions</button>
+        </a>
+    </div>
+</footer>
+    <script src="./calc.js"></script>
+</body>
+</html>
