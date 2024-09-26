@@ -161,12 +161,14 @@ createInputs(Sem_5, createInputsBtn_5, TeachingUnitNumber_5, allInputs_5, calcul
 createInputs(Sem_6, createInputsBtn_6, TeachingUnitNumber_6, allInputs_6, calculateSection_6);
 
 
-function calculationSection(Sem_N_Arg, displayResult_Arg, allInputs_Arg) {
+function calculationSection(Sem_N_Arg, displayResult_Arg, allInputs_Arg, Sem_N_and_N_Arg) {
     let TotalMarks = 0;
     const Average = Sem_N_Arg.querySelector("#Average");
     const Marks = Sem_N_Arg.querySelector("#Marks");
+
     displayResult_Arg.addEventListener("click", () => {
     const eachInput = allInputs_Arg.querySelectorAll(".inp-value");
+    const calculateAnnualGradeBtn = Sem_N_and_N_Arg.querySelector("#calculate-annual-grade");
     const CreditsOptions = allInputs_Arg.querySelectorAll(".credit-options");
     console.log("This website is powered by E-learning !");
     const GetSemester = Sem_N_Arg.getAttribute("class");
@@ -232,6 +234,8 @@ function calculationSection(Sem_N_Arg, displayResult_Arg, allInputs_Arg) {
                     spinner.style.display = "none";
                     afterSpinner.style.display = "block";
                 }, 1000);
+                calculateAnnualGradeBtn.style.display = "block";
+                
                 localStorage.setItem(`${GetSemester}-GradAvailable`, "true");
                 TotalMarks = 0;
                 calculateAgainBtn.addEventListener("click", () => {
@@ -243,17 +247,23 @@ function calculationSection(Sem_N_Arg, displayResult_Arg, allInputs_Arg) {
 
 }
 
-calculationSection(Sem_1, displayResult, allInputs);
-calculationSection(Sem_2, displayResult_2, allInputs_2);
-calculationSection(Sem_3, displayResult_3, allInputs_3);
-calculationSection(Sem_4, displayResult_4, allInputs_4);
-calculationSection(Sem_5, displayResult_5, allInputs_5);
-calculationSection(Sem_6, displayResult_6, allInputs_6);
+calculationSection(Sem_1, displayResult, allInputs, Sem_1_and_2);
+calculationSection(Sem_2, displayResult_2, allInputs_2, Sem_1_and_2);
+calculationSection(Sem_3, displayResult_3, allInputs_3, Sem_3_and_4);
+calculationSection(Sem_4, displayResult_4, allInputs_4, Sem_3_and_4);
+calculationSection(Sem_5, displayResult_5, allInputs_5, Sem_5_and_6);
+calculationSection(Sem_6, displayResult_6, allInputs_6, Sem_5_and_6);
 
 
 function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
     const GetSemester = Sem_N_Arg.getAttribute("class");
     const GetAllSemesters = Sem_N_and_N_Arg.getAttribute("class");
+    const calculateAnnualGradeBtn = Sem_N_and_N_Arg.querySelector("#calculate-annual-grade");
+    const AnnualMarks = Sem_N_and_N_Arg.querySelector("#Marks");
+    const AnnualGrade = Sem_N_and_N_Arg.querySelector("#Average");
+    const allSemesters = document.querySelector(".all-semesters");
+    const AllMarks = allSemesters.querySelector("#Marks");
+    const AllAverage = allSemesters.querySelector("#Average");
     const GradAvailable = localStorage.getItem(`${GetSemester}-GradAvailable`);
     const firstSection = Sem_N_Arg.querySelector(".first-section");
     const resultSection = Sem_N_Arg.querySelector(".result-section-holder");
@@ -289,6 +299,11 @@ function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
         localStorage.removeItem("Complete-Average");
         firstSection.style.display = "block";
         resultSection.style.display = "none";
+        calculateAnnualGradeBtn.style.display = "none";
+        AnnualMarks.textContent = "----"
+        AnnualGrade.textContent = "----"
+        AllMarks.textContent = "----"
+        AllAverage.textContent = "----"
     })
 }
 DisplayExistingGrade(Sem_1, Sem_1_and_2);
@@ -494,15 +509,28 @@ function DisplayGeneralGrade () {
     const Marks = allSemesters.querySelector("#Marks");
     const Average = allSemesters.querySelector("#Average");
 
-    const GetSem_1_and_2_Marks = localStorage.getItem('sem-1-and-2-Annual-Marks');
-    const GetSem_3_and_4_Marks = localStorage.getItem('sem-3-and-4-Annual-Marks');
-    const GetSem_5_and_6_Marks = localStorage.getItem('sem-5-and-6-Annual-Marks');
-
-    const GetSem_1_and_2_Average = localStorage.getItem('sem-1-and-2-Annual-Average');
-    const GetSem_3_and_4_Average = localStorage.getItem('sem-3-and-4-Annual-Average');
-    const GetSem_5_and_6_Average = localStorage.getItem('sem-5-and-6-Annual-Average');
-
+    
     calculateAllSemestersGradeBtn.addEventListener("click", () => {
+
+        const GetSem_1_and_2_Marks = localStorage.getItem('sem-1-and-2-Annual-Marks');
+        const GetSem_3_and_4_Marks = localStorage.getItem('sem-3-and-4-Annual-Marks');
+        const GetSem_5_and_6_Marks = localStorage.getItem('sem-5-and-6-Annual-Marks');
+    
+        const GetSem_1_and_2_Average = localStorage.getItem('sem-1-and-2-Annual-Average');
+        const GetSem_3_and_4_Average = localStorage.getItem('sem-3-and-4-Annual-Average');
+        const GetSem_5_and_6_Average = localStorage.getItem('sem-5-and-6-Annual-Average');
+        console.log(`Marks
+            
+            ${GetSem_1_and_2_Marks}
+            ${GetSem_3_and_4_Marks}
+            ${GetSem_5_and_6_Marks}`);
+
+        console.log(`Average
+            
+            ${GetSem_1_and_2_Average}
+            ${GetSem_3_and_4_Average}
+            ${GetSem_5_and_6_Average}`);
+        
         if(!GetSem_1_and_2_Marks && !GetSem_1_and_2_Average) {
             warningMessage.innerHTML = `La moyenne annuelle du <strong> { Semestre 1 } </strong> et <strong> { Semestre 2 } </strong> manquent. Veuillez calculer votre moyenne annuelle du <strong> { Semestre 1 } </strong> et <strong> { Semestre 2 } </strong> d'abord.`;
             errorMessage.style.display = "block";
