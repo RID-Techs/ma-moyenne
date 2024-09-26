@@ -519,17 +519,6 @@ function DisplayGeneralGrade () {
         const GetSem_1_and_2_Average = localStorage.getItem('sem-1-and-2-Annual-Average');
         const GetSem_3_and_4_Average = localStorage.getItem('sem-3-and-4-Annual-Average');
         const GetSem_5_and_6_Average = localStorage.getItem('sem-5-and-6-Annual-Average');
-        console.log(`Marks
-            
-            ${GetSem_1_and_2_Marks}
-            ${GetSem_3_and_4_Marks}
-            ${GetSem_5_and_6_Marks}`);
-
-        console.log(`Average
-            
-            ${GetSem_1_and_2_Average}
-            ${GetSem_3_and_4_Average}
-            ${GetSem_5_and_6_Average}`);
         
         if(!GetSem_1_and_2_Marks && !GetSem_1_and_2_Average) {
             warningMessage.innerHTML = `La moyenne annuelle du <strong> { Semestre 1 } </strong> et <strong> { Semestre 2 } </strong> manquent. Veuillez calculer votre moyenne annuelle du <strong> { Semestre 1 } </strong> et <strong> { Semestre 2 } </strong> d'abord.`;
@@ -557,12 +546,10 @@ function DisplayGeneralGrade () {
 
         const TotalGeneralMarks = (convertSem_1_and_2_Marks + convertSem_3_and_4_Marks + convertSem_5_and_6_Marks)
         localStorage.setItem("Complete-Marks", TotalGeneralMarks);
-        console.log(TotalGeneralMarks);
 
         const TotalGeneralGrade = (convertSem_1_and_2_Average + convertSem_3_and_4_Average + convertSem_5_and_6_Average);
         const GetGeneraleGrade = (TotalGeneralGrade / 3).toFixed(2);
         localStorage.setItem("Complete-Average", GetGeneraleGrade);
-        console.log(GetGeneraleGrade);
 
         spinner.style.display = "block";
             setTimeout(() => {
