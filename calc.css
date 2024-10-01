@@ -159,6 +159,10 @@ header {
     padding-bottom: 0.3em;
 }
 
+.break-sentence {
+    display: none;
+}
+
 .website-creator a, #website-owner{
     cursor: pointer;
     text-decoration: none;
@@ -226,6 +230,7 @@ header {
 
         & #warning-message{
             font-size: 1rem;
+            line-height: 1.7em;
         }
 
         & hr {
@@ -254,7 +259,7 @@ header {
 
 .container {
     margin-top: 5em;
-    padding: 1em;
+    padding: 3em;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -455,13 +460,44 @@ header {
     100% { opacity: 1; }
 }
 
+.age-field {
+    margin-top: 1em;
+    background-color: #f7fffd;
+    margin-bottom: 1em;
+    padding: 0.4em;
+    border-radius: 5px;
+}
+
+.age-wrapper {
+    margin-left: 1em;
+}
+
+#age {
+    outline: none;
+    border: 2px solid silver;
+    border-radius: 5px;
+    padding: 0.5em;
+    width: 50px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.separator {
+    border: 2px dashed #ccc;
+    margin: 0.4em 0em;
+}
+
 .actual-grade-display-section {
     margin-top: 1em;
     padding: 0.4em;
+    line-height: 1.7em;
     border: none;
     background-color: #fffefe;
     box-shadow: 2px 2px 2px red, -2px -2px 2px green;
     border-radius: 10px;
+}
+.all-grades-display-section {
+    line-height: 1.7em;
 }
 #calculate-again{
     margin-top: 1em;
@@ -605,5 +641,9 @@ a.suggetions-container {
 @media screen and (max-width: 476px) {
     .container {
         margin-top: 8em;
+        padding: 1em;
+    }
+    .break-sentence {
+        display: block;
     }
 }

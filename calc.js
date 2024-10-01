@@ -145,6 +145,8 @@ function createInputs(Sem_N_Arg, createInputsBtn_Arg, TeachingUnitNumber_Arg, al
             calculateSection_Arg.style.display = "block"
         }
 
+        TeachingUnitNumber_Arg.value = ""
+
         ResetBtn.addEventListener("click", () => {
             allInputs_Arg.innerHTML = "";
             calculateSection_Arg.style.display = "none";
@@ -163,8 +165,10 @@ createInputs(Sem_6, createInputsBtn_6, TeachingUnitNumber_6, allInputs_6, calcul
 
 function calculationSection(Sem_N_Arg, displayResult_Arg, allInputs_Arg, Sem_N_and_N_Arg) {
     let TotalMarks = 0;
+    let CreditValidated = 0;
     const Average = Sem_N_Arg.querySelector("#Average");
     const Marks = Sem_N_Arg.querySelector("#Marks");
+    const AllCreditValidated = Sem_N_Arg.querySelector("#Credit-validated");
 
     displayResult_Arg.addEventListener("click", () => {
     const eachInput = allInputs_Arg.querySelectorAll(".inp-value");
@@ -220,14 +224,24 @@ function calculationSection(Sem_N_Arg, displayResult_Arg, allInputs_Arg, Sem_N_a
                         const Credit = inp.parentElement;
                         const CreditValue = Credit.querySelector(".credit-options").value;
                         const MultiplyMarkandCredit = TurnToNumber * CreditValue;
-                        TotalMarks = TotalMarks + MultiplyMarkandCredit;
+                        
+                        if(TurnToNumber >= 10) {
+                            const CreditValueToNumber = Number(CreditValue);
+                            CreditValidated = CreditValidated + CreditValueToNumber;
+                            localStorage.setItem(`${GetSemester}-Capitalized-Credits`, CreditValidated)
+                            AllCreditValidated.textContent = `${CreditValidated} / 30`;
+                        }
+
+                        TotalMarks = (TotalMarks + MultiplyMarkandCredit);
+                        
                         const averageReport = (TotalMarks / 30).toFixed(2);
                         Marks.textContent = TotalMarks;
                         Average.textContent = averageReport;
                         localStorage.setItem(`${GetSemester}-Marks`, TotalMarks);
                         localStorage.setItem(`${GetSemester}-Average`, averageReport);
                         
-                })
+                });
+                CreditValidated = 0;
                 firstSection.style.display = "none";
                 resultSection.style.display = "block";
                 setTimeout(() => {
@@ -263,6 +277,10 @@ function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
     const AnnualGrade = Sem_N_and_N_Arg.querySelector("#Average");
     const allSemesters = document.querySelector(".all-semesters");
     const AllMarks = allSemesters.querySelector("#Marks");
+    const Single_CreditValidated = Sem_N_and_N_Arg.querySelector("#Credit-validated");
+    const Single_StudentStatus = Sem_N_and_N_Arg.querySelector("#Student-status");
+    const Gen_CreditValidated = allSemesters.querySelector("#Credit-validated");
+    const Gen_StudentStatus = allSemesters.querySelector("#Student-status");
     const AllAverage = allSemesters.querySelector("#Average");
     const GradAvailable = localStorage.getItem(`${GetSemester}-GradAvailable`);
     const firstSection = Sem_N_Arg.querySelector(".first-section");
@@ -271,14 +289,17 @@ function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
     const afterSpinner = Sem_N_Arg.querySelector(".after-spinner");
     const AverageContent = Sem_N_Arg.querySelector("#Average");
     const MarksContent = Sem_N_Arg.querySelector("#Marks");
+    const CreditsContent = Sem_N_Arg.querySelector("#Credit-validated");
     const Marks = localStorage.getItem(`${GetSemester}-Marks`);
     const Average = localStorage.getItem(`${GetSemester}-Average`);
+    const CreditsValidated = localStorage.getItem(`${GetSemester}-Capitalized-Credits`);
     const calculateAgainBtn = Sem_N_Arg.querySelector("#calculate-again");
 
     if(GradAvailable === "true") {
         firstSection.style.display = "none";
         AverageContent.textContent = Average;
         MarksContent.textContent = Marks;
+        CreditsContent.textContent = `${CreditsValidated} / 30`;
         resultSection.style.display = "block";
         setTimeout(() => {
             spinner.style.display = "none";
@@ -293,8 +314,14 @@ function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
         localStorage.removeItem(`${GetSemester}-GradAvailable`);
         localStorage.removeItem(`${GetSemester}-Marks`);
         localStorage.removeItem(`${GetSemester}-Average`);
+        localStorage.removeItem(`${GetSemester}-Capitalized-Credits`)
         localStorage.removeItem(`${GetAllSemesters}-Annual-Marks`);
         localStorage.removeItem(`${GetAllSemesters}-Annual-Average`);
+        localStorage.removeItem(`${GetAllSemesters}-AllValidated-Credits`);
+        localStorage.removeItem(`${GetAllSemesters}-student-status`);
+        localStorage.removeItem(`All_Total_Validated-${GetAllSemesters}-Credits`);
+        localStorage.removeItem("TotalAllCredits");
+        localStorage.removeItem(`Bachelor-student-status`);
         localStorage.removeItem("Complete-Marks");
         localStorage.removeItem("Complete-Average");
         firstSection.style.display = "block";
@@ -304,6 +331,10 @@ function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
         AnnualGrade.textContent = "----"
         AllMarks.textContent = "----"
         AllAverage.textContent = "----"
+        Single_CreditValidated.textContent = "----"
+        Single_StudentStatus.textContent = "----"
+        Gen_CreditValidated.textContent = "----"
+        Gen_StudentStatus.textContent = "----"
     })
 }
 DisplayExistingGrade(Sem_1, Sem_1_and_2);
@@ -319,8 +350,26 @@ const YearlyGrade = (Sem_N_Arg) => {
     const Marks = Sem_N_Arg.querySelector("#Marks");
     const Average = Sem_N_Arg.querySelector("#Average");
     const spinner = Sem_N_Arg.querySelector(".spinner");
+    const AllCreditValidated = Sem_N_Arg.querySelector("#Credit-validated");
+    const TotalCreditsValidated = Sem_N_Arg.querySelector("#Total-credit-validated");
+    const StudentStatus = Sem_N_Arg.querySelector("#Student-status");
+    const age = Sem_N_Arg.querySelector("#age");
+
     GetAnnualGradeBtn.addEventListener('click', () => {
+        const getSem_1_Credits = localStorage.getItem("sem-1-Capitalized-Credits");
+        const getSem_2_Credits = localStorage.getItem("sem-2-Capitalized-Credits");
+
+        const getSem_3_Credits = localStorage.getItem("sem-3-Capitalized-Credits");
+        const getSem_4_Credits = localStorage.getItem("sem-4-Capitalized-Credits");
+
+        const getSem_5_Credits = localStorage.getItem("sem-5-Capitalized-Credits");
+        const getSem_6_Credits = localStorage.getItem("sem-6-Capitalized-Credits");
+
+        
         const GetSemester = Sem_N_Arg.getAttribute("class");
+
+        const getAgeValue = age.value.trim();
+        const TurnAgeToNumber = Number(getAgeValue);
 
         const GetMarks_1 = localStorage.getItem(`sem-1-Marks`);
         const GetMarks_2 = localStorage.getItem(`sem-2-Marks`);
@@ -360,18 +409,57 @@ const YearlyGrade = (Sem_N_Arg) => {
                 return;
             }
 
+
             const convertMarksToNumber_1 = Number(GetMarks_1)
             const convertMarksToNumber_2 = Number(GetMarks_2)
             const TotalMarks = convertMarksToNumber_1 + convertMarksToNumber_2
             const AnnualAverage = (TotalMarks / 60).toFixed(2);
-            localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
-            localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
-            spinner.style.display = "block";
 
+            if(getAgeValue === "") {
+                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de determiner si vous êtes "Boursier" ou "Allocataire"`;
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            if(isNaN(TurnAgeToNumber)){
+                warningMessage.innerHTML = `Le champ "Âge" contient du texte. Veuillez insérer un nombre, s'il vous plaît !`;
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            spinner.style.display = "block";
             setTimeout(() => {
                 spinner.style.display = "none";
+    
+                const convert_getSem_1_Credits = Number(getSem_1_Credits);
+                const convert_getSem_2_Credits = Number(getSem_2_Credits);
+    
+                const Sem1_and_2_Validated_Credits = convert_getSem_1_Credits + convert_getSem_2_Credits;
+    
+                AllCreditValidated.textContent = `${Sem1_and_2_Validated_Credits} / 60`;
+                TotalCreditsValidated.textContent = `${Sem1_and_2_Validated_Credits} / 60`;
+                localStorage.setItem(`${GetSemester}-AllValidated-Credits`, Sem1_and_2_Validated_Credits);
+                localStorage.setItem(`All_Total_Validated-${GetSemester}-Credits`, Sem1_and_2_Validated_Credits);
+    
+                if(TurnAgeToNumber < 24 && Sem1_and_2_Validated_Credits >= 53) {
+                    StudentStatus.textContent = "Boursier";
+                    localStorage.setItem(`${GetSemester}-student-status`, "Boursier")
+                } else if (TurnAgeToNumber < 28 && Sem1_and_2_Validated_Credits >= 25) {
+                    StudentStatus.textContent = "Allocataire";
+                    localStorage.setItem(`${GetSemester}-student-status`, "Allocataire")
+                } else {
+                    warningMessage.innerHTML = `Désolé, nous osons croire que vous ne respectez pas les critères d'attribution des bourses et allocations de secours. Pour plus d'infos, veuillez nous contacter.`;
+                    errorMessage.style.display = "block";
+                    StudentStatus.textContent = "----";
+                    localStorage.setItem(`${GetSemester}-student-status`, "----")
+                }
+
+                localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
+                localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
+
                 Marks.textContent = TotalMarks;
                 Average.textContent = AnnualAverage;
+
             }, 1000)
         }
 
@@ -400,13 +488,52 @@ const YearlyGrade = (Sem_N_Arg) => {
             const convertMarksToNumber_3 = Number(GetMarks_3)
             const convertMarksToNumber_4 = Number(GetMarks_4)
             const TotalMarks = convertMarksToNumber_3 + convertMarksToNumber_4
-            const AnnualAverage = (TotalMarks / 60).toFixed(2)
-            localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
-            localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
+            const AnnualAverage = (TotalMarks / 60).toFixed(2);
+
+            if(getAgeValue === "") {
+                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de determiner si vous êtes "Boursier" ou "Allocataire"`;
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            if(isNaN(TurnAgeToNumber)){
+                warningMessage.innerHTML = `Le champ "Âge" contient du texte. Veuillez insérer un nombre, s'il vous plaît !`;
+                errorMessage.style.display = "block";
+                return;
+            }
             
             spinner.style.display = "block";
             setTimeout(() => {
                 spinner.style.display = "none";
+                const getTotalSem_1_and_2_Credits = localStorage.getItem(`All_Total_Validated-sem-1-and-2-Credits`);
+                const convertGetTotalSem_1_and_2_Credits = Number(getTotalSem_1_and_2_Credits)
+                const convert_getSem_3_Credits = Number(getSem_3_Credits);
+                const convert_getSem_4_Credits = Number(getSem_4_Credits);
+    
+                const Sem3_and_4_Validated_Credits = convert_getSem_3_Credits + convert_getSem_4_Credits;
+                const Total_Sem_1_3_and_2_4_Validated_Credits = Sem3_and_4_Validated_Credits + convertGetTotalSem_1_and_2_Credits;
+                AllCreditValidated.textContent = `${Sem3_and_4_Validated_Credits} / 60`;
+                TotalCreditsValidated.textContent = `${Total_Sem_1_3_and_2_4_Validated_Credits} / 120`;
+                localStorage.setItem(`${GetSemester}-AllValidated-Credits`, Sem3_and_4_Validated_Credits);
+                localStorage.setItem(`All_Total_Validated-${GetSemester}-Credits`, Total_Sem_1_3_and_2_4_Validated_Credits);
+
+    
+                if(TurnAgeToNumber < 25 && Total_Sem_1_3_and_2_4_Validated_Credits >= 106) {
+                    StudentStatus.textContent = "Boursier";
+                    localStorage.setItem(`${GetSemester}-student-status`, "Boursier")
+                } else if (TurnAgeToNumber < 29 && Total_Sem_1_3_and_2_4_Validated_Credits >= 50) {
+                    StudentStatus.textContent = "Allocataire";
+                    localStorage.setItem(`${GetSemester}-student-status`, "Allocataire")
+                } else {
+                    warningMessage.innerHTML = `Désolé, nous osons croire que vous ne respectez pas les critères d'attribution des bourses et allocations de secours. Pour plus d'infos, veuillez nous contacter.`;
+                    errorMessage.style.display = "block";
+                    StudentStatus.textContent = "----";
+                    localStorage.setItem(`${GetSemester}-student-status`, "----")
+                }
+
+                localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
+                localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
+
                 Marks.textContent = TotalMarks;
                 Average.textContent = AnnualAverage;
             }, 1000)
@@ -437,13 +564,51 @@ const YearlyGrade = (Sem_N_Arg) => {
             const convertMarksToNumber_5 = Number(GetMarks_5)
             const convertMarksToNumber_6 = Number(GetMarks_6)
             const TotalMarks = convertMarksToNumber_5 + convertMarksToNumber_6
-            const AnnualAverage = (TotalMarks / 60).toFixed(2)
-            localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
-            localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
-            spinner.style.display = "block";
+            const AnnualAverage = (TotalMarks / 60).toFixed(2);
 
+            if(getAgeValue === "") {
+                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de determiner si vous êtes "Boursier" ou "Allocataire"`;
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            if(isNaN(TurnAgeToNumber)){
+                warningMessage.innerHTML = `Le champ "Âge" contient du texte. Veuillez insérer un nombre, s'il vous plaît !`;
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            spinner.style.display = "block";
             setTimeout(() => {
                 spinner.style.display = "none";
+                const getTotalSem_3_and_4_Credits = localStorage.getItem(`All_Total_Validated-sem-3-and-4-Credits`);
+                const convert_getTotalSem_3_and_4_Credits = Number(getTotalSem_3_and_4_Credits);
+                const convert_getSem_5_Credits = Number(getSem_5_Credits);
+                const convert_getSem_6_Credits = Number(getSem_6_Credits);
+    
+                const Sem5_and_6_Validated_Credits = convert_getSem_5_Credits + convert_getSem_6_Credits;
+                const Total_Sem_3_5_and_4_6_Validated_Credits = Sem5_and_6_Validated_Credits + convert_getTotalSem_3_and_4_Credits;
+                AllCreditValidated.textContent = `${Sem5_and_6_Validated_Credits} / 60`;
+                TotalCreditsValidated.textContent = `${Total_Sem_3_5_and_4_6_Validated_Credits} / 180`;
+                localStorage.setItem(`${GetSemester}-AllValidated-Credits`, Sem5_and_6_Validated_Credits);
+                localStorage.setItem(`All_Total_Validated-${GetSemester}-Credits`, Total_Sem_3_5_and_4_6_Validated_Credits);
+    
+                if(TurnAgeToNumber < 30 && Total_Sem_3_5_and_4_6_Validated_Credits >= 80) {
+                    StudentStatus.textContent = "Allocataire";
+                    localStorage.setItem(`${GetSemester}-student-status`, "Allocataire")
+                } else if (TurnAgeToNumber < 31 && Total_Sem_3_5_and_4_6_Validated_Credits >= 150) {
+                    StudentStatus.textContent = "Allocataire";
+                    localStorage.setItem(`${GetSemester}-student-status`, "Allocataire")
+                } else {
+                    warningMessage.innerHTML = `Désolé, nous osons croire que vous ne respectez pas les critères d'attribution des bourses et allocations de secours. Pour plus d'infos, veuillez nous contacter.`;
+                    errorMessage.style.display = "block";
+                    StudentStatus.textContent = "----";
+                    localStorage.setItem(`${GetSemester}-student-status`, "----")
+                }
+
+                localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
+                localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
+
                 Marks.textContent = TotalMarks;
                 Average.textContent = AnnualAverage;
             }, 1000)
@@ -460,42 +625,72 @@ function ExistingAnnualGrade(Sem_N_Arg) {
     const spinner = Sem_N_Arg.querySelector(".spinner");
     const Annual_Marks = Sem_N_Arg.querySelector("#Marks");
     const Annual_Average = Sem_N_Arg.querySelector("#Average");
+    const AllCreditValidated = Sem_N_Arg.querySelector("#Credit-validated");
+    const TotalCreditValidated = Sem_N_Arg.querySelector("#Total-credit-validated");
+    const StudentStatus = Sem_N_Arg.querySelector("#Student-status");
 
     const GetSem_1_and_2_Marks = localStorage.getItem(`${GetSemester}-Annual-Marks`);
     const GetSem_1_and_2_Average = localStorage.getItem(`${GetSemester}-Annual-Average`);
+    const GetSem_1_and_2_AllCredits = localStorage.getItem(`${GetSemester}-AllValidated-Credits`);
+    const GetSem_1_and_2_StudentStatus = localStorage.getItem(`${GetSemester}-student-status`);
 
     const GetSem_3_and_4_Marks = localStorage.getItem(`${GetSemester}-Annual-Marks`);
     const GetSem_3_and_4_Average = localStorage.getItem(`${GetSemester}-Annual-Average`);
+    const GetSem_3_and_4_AllCredits = localStorage.getItem(`${GetSemester}-AllValidated-Credits`);
+    const GetSem_3_and_4_StudentStatus = localStorage.getItem(`${GetSemester}-student-status`);
 
     const GetSem_5_and_6_Marks = localStorage.getItem(`${GetSemester}-Annual-Marks`);
     const GetSem_5_and_6_Average = localStorage.getItem(`${GetSemester}-Annual-Average`);
+    const GetSem_5_and_6_AllCredits = localStorage.getItem(`${GetSemester}-AllValidated-Credits`);
+    const GetSem_5_and_6_StudentStatus = localStorage.getItem(`${GetSemester}-student-status`);
 
-    if(GetSem_1_and_2_Marks && GetSem_1_and_2_Average) {
-        spinner.style.display = "block";
-            setTimeout(() => {
-                spinner.style.display = "none";
-                Annual_Marks.textContent = GetSem_1_and_2_Marks;
-                Annual_Average.textContent = GetSem_1_and_2_Average;
-            }, 1000)
+    const All_Total_Validated_sem_1_and_2_Credits = localStorage.getItem(`All_Total_Validated-sem-1-and-2-Credits`);
+    const All_Total_Validated_sem_3_and_4_Credits = localStorage.getItem(`All_Total_Validated-sem-3-and-4-Credits`);
+    const All_Total_Validated_sem_5_and_6_Credits = localStorage.getItem(`All_Total_Validated-sem-5-and-6-Credits`);
+
+    if (GetSemester === "sem-1-and-2") {
+        if(GetSem_1_and_2_Marks && GetSem_1_and_2_Average) {
+            spinner.style.display = "block";
+                setTimeout(() => {
+                    spinner.style.display = "none";
+                    Annual_Marks.textContent = GetSem_1_and_2_Marks;
+                    Annual_Average.textContent = GetSem_1_and_2_Average;
+                    AllCreditValidated.textContent = `${GetSem_1_and_2_AllCredits} / 60`;
+                    TotalCreditValidated.textContent = `${All_Total_Validated_sem_1_and_2_Credits} / 60`;
+                    StudentStatus.textContent = GetSem_1_and_2_StudentStatus;
+                }, 1000)
+        }
     }
 
-    if(GetSem_3_and_4_Marks && GetSem_3_and_4_Average) {
-        spinner.style.display = "block";
-            setTimeout(() => {
-                spinner.style.display = "none";
-                Annual_Marks.textContent = GetSem_3_and_4_Marks;
-                Annual_Average.textContent = GetSem_3_and_4_Average;
-            }, 1000)
+    if(GetSemester === "sem-3-and-4") {
+        if(GetSem_3_and_4_Marks && GetSem_3_and_4_Average) {
+            spinner.style.display = "block";
+                setTimeout(() => {
+                    spinner.style.display = "none";
+                    Annual_Marks.textContent = GetSem_3_and_4_Marks;
+                    Annual_Average.textContent = GetSem_3_and_4_Average;
+                    AllCreditValidated.textContent = `${GetSem_3_and_4_AllCredits} / 60`;
+                    TotalCreditValidated.textContent = `${All_Total_Validated_sem_3_and_4_Credits} / 120`;
+                    StudentStatus.textContent = GetSem_3_and_4_StudentStatus;
+                }, 1000)
+        }
     }
 
-    if(GetSem_5_and_6_Marks && GetSem_5_and_6_Average) {
-        spinner.style.display = "block";
-            setTimeout(() => {
-                spinner.style.display = "none";
-                Annual_Marks.textContent = GetSem_5_and_6_Marks;
-                Annual_Average.textContent = GetSem_5_and_6_Average;
-            }, 1000)
+    if(GetSemester === "sem-5-and-6") {
+        if(GetSem_5_and_6_Marks && GetSem_5_and_6_Average) {
+            spinner.style.display = "block";
+                setTimeout(() => {
+                    spinner.style.display = "none";
+                    Annual_Marks.textContent = GetSem_5_and_6_Marks;
+                    Annual_Average.textContent = GetSem_5_and_6_Average;
+                    AllCreditValidated.textContent = `${GetSem_5_and_6_AllCredits} / 60`;
+                    TotalCreditValidated.textContent = `${All_Total_Validated_sem_5_and_6_Credits} / 180`;
+                    StudentStatus.textContent = GetSem_5_and_6_StudentStatus;
+                }, 1000)
+        }
     }
+
+    
 }
 
 ExistingAnnualGrade(Sem_1_and_2);
@@ -508,8 +703,10 @@ function DisplayGeneralGrade () {
     const calculateAllSemestersGradeBtn = allSemesters.querySelector("#calculate-all-semesters-grade");
     const Marks = allSemesters.querySelector("#Marks");
     const Average = allSemesters.querySelector("#Average");
+    const age = allSemesters.querySelector("#age");
+    const CreditValidated = allSemesters.querySelector("#Credit-validated");
+    const StudentStatus = allSemesters.querySelector("#Student-status");
 
-    
     calculateAllSemestersGradeBtn.addEventListener("click", () => {
 
         const GetSem_1_and_2_Marks = localStorage.getItem('sem-1-and-2-Annual-Marks');
@@ -519,6 +716,15 @@ function DisplayGeneralGrade () {
         const GetSem_1_and_2_Average = localStorage.getItem('sem-1-and-2-Annual-Average');
         const GetSem_3_and_4_Average = localStorage.getItem('sem-3-and-4-Annual-Average');
         const GetSem_5_and_6_Average = localStorage.getItem('sem-5-and-6-Annual-Average');
+
+
+        const All_Sem_1_and_2_Credits = localStorage.getItem(`sem-1-and-2-AllValidated-Credits`);
+        const All_Sem_3_and_4_Credits = localStorage.getItem(`sem-3-and-4-AllValidated-Credits`);
+        const All_Sem_5_and_6_Credits = localStorage.getItem(`sem-5-and-6-AllValidated-Credits`);
+
+        const convert_All_Sem_1_and_2_Credits = Number(All_Sem_1_and_2_Credits);
+        const convert_All_Sem_3_and_4_Credits = Number(All_Sem_3_and_4_Credits);
+        const convert_All_Sem_5_and_6_Credits = Number(All_Sem_5_and_6_Credits);
         
         if(!GetSem_1_and_2_Marks && !GetSem_1_and_2_Average) {
             warningMessage.innerHTML = `La moyenne annuelle du <strong> { Semestre 1 } </strong> et <strong> { Semestre 2 } </strong> manquent. Veuillez calculer votre moyenne annuelle du <strong> { Semestre 1 } </strong> et <strong> { Semestre 2 } </strong> d'abord.`;
@@ -535,6 +741,39 @@ function DisplayGeneralGrade () {
             errorMessage.style.display = "block";
             return;
         }
+
+        const GetAgeValue = age.value.trim();
+        const convertAgeValue = Number(GetAgeValue);
+
+        if(GetAgeValue === "") {
+            warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît.`;
+            errorMessage.style.display = "block";
+            return;
+        }
+
+        if(isNaN(convertAgeValue)) {
+            warningMessage.innerHTML = `Le champ "Âge" contient du texte. Veuillez plutôt insérer un nombre, s'il vous plaît.`;
+            errorMessage.style.display = "block";
+            return;
+        }
+
+        if(!All_Sem_1_and_2_Credits) {
+            warningMessage.innerHTML = `Le nombre annuel de crédits validés du <strong>Semestre 1</strong> et du <strong>Semestre 2</strong> manquent. Veuillez calculer la moyenne anuelle du <strong>Semestre 1</strong> et du <strong>Semestre 2</strong> d'abord, s'il vous plaît.`;
+            errorMessage.style.display = "block";
+            return;
+        }
+        if(!All_Sem_3_and_4_Credits) {
+            warningMessage.innerHTML = `Le nombre annuel de crédits validés du <strong>Semestre 3</strong> et du <strong>Semestre 4</strong> manquent. Veuillez calculer la moyenne anuelle du <strong>Semestre 3</strong> et du <strong>Semestre 4</strong> d'abord, s'il vous plaît.`;
+            errorMessage.style.display = "block";
+            return;
+        }
+        if(!All_Sem_5_and_6_Credits) {
+            warningMessage.innerHTML = `Le nombre annuel de crédits validés du <strong>Semestre 5</strong> et du <strong>Semestre 6</strong> manquent. Veuillez calculer la moyenne anuelle du <strong>Semestre 5</strong> et du <strong>Semestre 6</strong> d'abord, s'il vous plaît.`;
+            errorMessage.style.display = "block";
+            return;
+        }
+
+        const CalculateAllCredits = convert_All_Sem_1_and_2_Credits + convert_All_Sem_3_and_4_Credits + convert_All_Sem_5_and_6_Credits;
 
         const convertSem_1_and_2_Marks = Number(GetSem_1_and_2_Marks);
         const convertSem_3_and_4_Marks = Number(GetSem_3_and_4_Marks);
@@ -554,6 +793,22 @@ function DisplayGeneralGrade () {
         spinner.style.display = "block";
             setTimeout(() => {
                 spinner.style.display = "none";
+                localStorage.setItem("TotalAllCredits", CalculateAllCredits);
+                CreditValidated.textContent = `${CalculateAllCredits} / 180`;
+
+                if(convertAgeValue < 30 && CalculateAllCredits >= 80) {
+                    StudentStatus.textContent = "Allocataire";
+                    localStorage.setItem(`Bachelor-student-status`, "Allocataire")
+                } else if (convertAgeValue < 31 && CalculateAllCredits >= 150) {
+                    StudentStatus.textContent = "Allocataire";
+                    localStorage.setItem(`Bachelor-student-status`, "Allocataire")
+                } else {
+                    warningMessage.innerHTML = `Désolé, nous osons croire que vous ne respectez pas les critères d'attribution des bourses et allocations de secours. Pour plus d'infos, veuillez nous contacter.`;
+                    errorMessage.style.display = "block";
+                    StudentStatus.textContent = "----";
+                    localStorage.setItem(`Bachelor-student-status`, "----")
+                }
+
                 Marks.textContent = TotalGeneralMarks;
                 Average.textContent = GetGeneraleGrade;
             }, 1000)
@@ -570,10 +825,14 @@ function ExistingGeneralGrade() {
     const spinner = allSemesters.querySelector(".spinner");
     const Marks = allSemesters.querySelector("#Marks");
     const Average = allSemesters.querySelector("#Average");
+    const CreditValidated = allSemesters.querySelector("#Credit-validated");
+    const StudentStatus = allSemesters.querySelector("#Student-status");
 
 
     const CompleteMarks = localStorage.getItem("Complete-Marks");
     const CompleteAverage = localStorage.getItem("Complete-Average");
+    const TotalCredits = localStorage.getItem("TotalAllCredits");
+    const BachelorStatus = localStorage.getItem(`Bachelor-student-status`)
 
     if(CompleteMarks && CompleteAverage) {
         spinner.style.display = "block";
@@ -581,6 +840,8 @@ function ExistingGeneralGrade() {
                 spinner.style.display = "none";
                 Marks.textContent = CompleteMarks;
                 Average.textContent = CompleteAverage;
+                CreditValidated.textContent = `${TotalCredits} / 180`;
+                StudentStatus.textContent = BachelorStatus;
             }, 1000)
     }
 }
