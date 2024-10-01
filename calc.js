@@ -279,6 +279,7 @@ function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
     const AllMarks = allSemesters.querySelector("#Marks");
     const Single_CreditValidated = Sem_N_and_N_Arg.querySelector("#Credit-validated");
     const Single_StudentStatus = Sem_N_and_N_Arg.querySelector("#Student-status");
+    const TotalCreditsValidated = Sem_N_and_N_Arg.querySelector("#Total-credit-validated");
     const Gen_CreditValidated = allSemesters.querySelector("#Credit-validated");
     const Gen_StudentStatus = allSemesters.querySelector("#Student-status");
     const AllAverage = allSemesters.querySelector("#Average");
@@ -333,6 +334,7 @@ function DisplayExistingGrade(Sem_N_Arg, Sem_N_and_N_Arg) {
         AllAverage.textContent = "----"
         Single_CreditValidated.textContent = "----"
         Single_StudentStatus.textContent = "----"
+        TotalCreditsValidated.textContent = "----"
         Gen_CreditValidated.textContent = "----"
         Gen_StudentStatus.textContent = "----"
     })
