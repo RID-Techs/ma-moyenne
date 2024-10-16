@@ -49,46 +49,72 @@ const errorBtn = document.querySelector("#error-btn");
 const warningMessage = document.querySelector("#warning-message");
 const errorMessage = document.querySelector(".error-message");
 
-document.addEventListener("DOMContentLoaded", () => {
-    const HasRead = localStorage.getItem("HasRead");
-    const welcomeMessageContainer = document.querySelector(".welcome-message-container");
-    const NextBtn = document.querySelector("#next-btn");
-    const prevBtn = document.querySelector("#prev-btn");
-    const closeBtn = document.querySelector("#close-btn");
-
-    const messageContent_1 = document.querySelector("#message-content");
-    const messageContenet_2 = document.querySelector("#message-content-2");
-
-    if(HasRead === "true") {
-        return;
-    } else {
-        function WelcomeMessage() {
-            welcomeMessageContainer.style.display = "block";
+function WelecomeInfoMessage() {
+    document.addEventListener("DOMContentLoaded", () => {
+        const HasRead = localStorage.getItem("HasRead");
+        const welcomeMessageContainer = document.querySelector(".welcome-message-container");
+        const NextBtn = document.querySelector("#next-btn");
+        const prevBtn = document.querySelector("#prev-btn");
+        const closeBtn = document.querySelector("#close-btn");
     
-            NextBtn.addEventListener("click", () => {
-                messageContent_1.style.display = "none";
-                messageContent_1.classList.remove("animate-content-prev");
-                messageContent_1.classList.add("animate-content-1");
-                messageContenet_2.style.display = "block";
-            })
-            prevBtn.addEventListener("click", () => {
-                messageContent_1.classList.remove("animate-content-1");
-                messageContent_1.classList.add("animate-content-prev");
-                messageContenet_2.style.display = "none";
-                messageContent_1.style.display = "block";
-            })
-            closeBtn.addEventListener("click", () => {
-                localStorage.setItem("HasRead", "true");
-                welcomeMessageContainer.style.display = "none";
-            })
+        const messageContent_1 = document.querySelector("#message-content");
+        const messageContenet_2 = document.querySelector("#message-content-2");
+    
+        if(HasRead === "true") {
+            return;
+        } else {
+            function WelcomeMessage() {
+                welcomeMessageContainer.style.display = "block";
+                document.body.style.overflow = "hidden";
+                NextBtn.addEventListener("click", () => {
+                    messageContent_1.style.display = "none";
+                    messageContent_1.classList.remove("animate-content-prev");
+                    messageContent_1.classList.add("animate-content-1");
+                    messageContenet_2.style.display = "block";
+                })
+                prevBtn.addEventListener("click", () => {
+                    messageContent_1.classList.remove("animate-content-1");
+                    messageContent_1.classList.add("animate-content-prev");
+                    messageContenet_2.style.display = "none";
+                    messageContent_1.style.display = "block";
+                })
+                closeBtn.addEventListener("click", () => {
+                    localStorage.setItem("HasRead", "true");
+                    welcomeMessageContainer.style.display = "none";
+                })
+            }
+            WelcomeMessage()
         }
-        WelcomeMessage()
-    }
+    
+    })
+}
 
-})
+WelecomeInfoMessage()
 
 console.log("This website is powered by E-learning !");
 
+function PrintFeatureMessage() {
+    document.addEventListener("DOMContentLoaded", () => {
+        const NewPrintFeature = localStorage.getItem("PrintFeature");
+        const newPrintFeatureContainer = document.querySelector(".new-print-feature");
+        const clearMytorage = document.querySelector("#clear-storage");
+    
+        if(NewPrintFeature === "true") {
+            return;
+        } else {
+            newPrintFeatureContainer.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+        clearMytorage.addEventListener("click", () => {
+            localStorage.clear();
+            localStorage.setItem("PrintFeature", "true");
+            localStorage.setItem("HasRead", "true");
+            newPrintFeatureContainer.style.display = "none";
+            document.body.style.overflow = "";
+        })
+    })
+}
+PrintFeatureMessage();
 
 errorBtn.addEventListener("click", () => {
     errorMessage.style.display = "none";
@@ -418,7 +444,7 @@ const YearlyGrade = (Sem_N_Arg) => {
             const AnnualAverage = (TotalMarks / 60).toFixed(2);
 
             if(getAgeValue === "") {
-                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de determiner si vous êtes "Boursier" ou "Allocataire"`;
+                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de déterminer si vous êtes "Boursier" ou "Allocataire"`;
                 errorMessage.style.display = "block";
                 return;
             }
@@ -456,6 +482,7 @@ const YearlyGrade = (Sem_N_Arg) => {
                     localStorage.setItem(`${GetSemester}-student-status`, "----")
                 }
 
+                localStorage.setItem(`${GetSemester}-Annual-Present`, "true");
                 localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
                 localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
 
@@ -493,7 +520,7 @@ const YearlyGrade = (Sem_N_Arg) => {
             const AnnualAverage = (TotalMarks / 60).toFixed(2);
 
             if(getAgeValue === "") {
-                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de determiner si vous êtes "Boursier" ou "Allocataire"`;
+                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de déterminer si vous êtes "Boursier" ou "Allocataire"`;
                 errorMessage.style.display = "block";
                 return;
             }
@@ -533,6 +560,7 @@ const YearlyGrade = (Sem_N_Arg) => {
                     localStorage.setItem(`${GetSemester}-student-status`, "----")
                 }
 
+                localStorage.setItem(`${GetSemester}-Annual-Present`, "true");
                 localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
                 localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
 
@@ -569,7 +597,7 @@ const YearlyGrade = (Sem_N_Arg) => {
             const AnnualAverage = (TotalMarks / 60).toFixed(2);
 
             if(getAgeValue === "") {
-                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de determiner si vous êtes "Boursier" ou "Allocataire"`;
+                warningMessage.innerHTML = `Le champ "Âge" est vide. Veuillez mentionner votre âge, s'il vous plaît ! Ça permet au système de déterminer si vous êtes "Boursier" ou "Allocataire"`;
                 errorMessage.style.display = "block";
                 return;
             }
@@ -608,6 +636,7 @@ const YearlyGrade = (Sem_N_Arg) => {
                     localStorage.setItem(`${GetSemester}-student-status`, "----")
                 }
 
+                localStorage.setItem(`${GetSemester}-Annual-Present`, "true");
                 localStorage.setItem(`${GetSemester}-Annual-Marks`, TotalMarks);
                 localStorage.setItem(`${GetSemester}-Annual-Average`, AnnualAverage);
 
@@ -791,6 +820,7 @@ function DisplayGeneralGrade () {
         const TotalGeneralGrade = (convertSem_1_and_2_Average + convertSem_3_and_4_Average + convertSem_5_and_6_Average);
         const GetGeneraleGrade = (TotalGeneralGrade / 3).toFixed(2);
         localStorage.setItem("Complete-Average", GetGeneraleGrade);
+        localStorage.setItem(`Complete-Annual-Present`, "true");
 
         spinner.style.display = "block";
             setTimeout(() => {
@@ -814,11 +844,8 @@ function DisplayGeneralGrade () {
                 Marks.textContent = TotalGeneralMarks;
                 Average.textContent = GetGeneraleGrade;
             }, 1000)
-        
     
     })
-
-
 }
 DisplayGeneralGrade();
 
@@ -829,7 +856,6 @@ function ExistingGeneralGrade() {
     const Average = allSemesters.querySelector("#Average");
     const CreditValidated = allSemesters.querySelector("#Credit-validated");
     const StudentStatus = allSemesters.querySelector("#Student-status");
-
 
     const CompleteMarks = localStorage.getItem("Complete-Marks");
     const CompleteAverage = localStorage.getItem("Complete-Average");
@@ -848,3 +874,261 @@ function ExistingGeneralGrade() {
     }
 }
 ExistingGeneralGrade();
+
+const PrintedResults = () => {
+    const printBtn = document.querySelectorAll(".print-btn");
+    const printFormContainer = document.querySelector(".print-form-container");
+    const closePrintBtn = document.querySelector(".close-print-btn");
+
+        printBtn.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                printFormContainer.style.display = "block";
+            })
+        });
+
+        closePrintBtn.addEventListener("click", () => {
+            printFormContainer.style.display = "none";
+        });
+
+    
+    const printUserName = document.querySelector("#print-user-name");
+    const printUserFirstname = document.querySelector("#print-user-firstname");
+    const printUserAge = document.querySelector("#print-user-age");
+    const printDate = document.querySelector("#print-date");
+
+    const Print_annual_semesters_12 = document.querySelector(".annual-semesters-12");
+    const Print_annual_semesters_34 = document.querySelector(".annual-semesters-34");
+    const Print_annual_semesters_56 = document.querySelector(".annual-semesters-56");
+
+    const print_semester_1_and_2 = document.querySelector(".print-semester-1-and-2");
+    const print_semester_3_and_4 = document.querySelector(".print-semester-3-and-4");
+    const print_semester_5_and_6 = document.querySelector(".print-semester-5-and-6");
+
+    const submit_btn = document.querySelector("#submit-btn");
+
+    const GetPrintingDate = new Date;
+    printDate.textContent = GetPrintingDate.toLocaleDateString();
+
+    submit_btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const getSem_1_Grades = localStorage.getItem("sem-1-GradAvailable");
+        const getSem_2_Grades = localStorage.getItem("sem-2-GradAvailable");
+        const getSem_3_Grades = localStorage.getItem("sem-3-GradAvailable");
+        const getSem_4_Grades = localStorage.getItem("sem-4-GradAvailable");
+        const getSem_5_Grades = localStorage.getItem("sem-5-GradAvailable");
+        const getSem_6_Grades = localStorage.getItem("sem-6-GradAvailable");
+    
+        const getSem_1_and_2_Annual_Present = localStorage.getItem("sem-1-and-2-Annual-Present");
+        const getSem_3_and_4_Annual_Present = localStorage.getItem("sem-3-and-4-Annual-Present");
+        const getSem_5_and_6_Annual_Present = localStorage.getItem("sem-5-and-6-Annual-Present");
+        const getSem_Complete_Annual_Present = localStorage.getItem("Complete-Annual-Present");
+
+
+        const userNameInp = document.querySelector("#user-name-inp");
+        const userFirstNameInp = document.querySelector("#user-firstname-inp");
+        const userAgeInp = document.querySelector("#user-age-inp");
+        const submitText = document.querySelector("#submit-text");
+        const docSpinner = document.querySelector("#doc-spinner");
+
+        if(userNameInp.value.trim() === "" || userFirstNameInp.value.trim() === "" || userAgeInp.value.trim() === "") {
+            warningMessage.innerHTML = `Veuillez remplir tous les champs, s'il vous plaît !`;
+            errorMessage.style.display = "block";
+            return;
+        }
+
+         // ========== Per Semester Grades 1&2 ===============
+    if(getSem_1_Grades === "true") {
+        const Sem_1_Average = localStorage.getItem("sem-1-Average");
+        const Sem_1_CapitalizedCredits = localStorage.getItem("sem-1-Capitalized-Credits");
+        const Sem_1_Marks = localStorage.getItem("sem-1-Marks");
+        
+
+        const semesterMarks = print_semester_1_and_2.querySelector(".semester-marks");
+        const semesterCredits = print_semester_1_and_2.querySelector(".semester-credits");
+        const semesterAverage = print_semester_1_and_2.querySelector(".semester-average");
+
+        semesterMarks.textContent = Sem_1_Marks;
+        semesterCredits.textContent = `${Sem_1_CapitalizedCredits} / 30`;
+        semesterAverage.textContent = Sem_1_Average;
+    }
+
+    if(getSem_2_Grades === "true") {
+        const Sem_2_Average = localStorage.getItem("sem-2-Average");
+        const Sem_2_CapitalizedCredits = localStorage.getItem("sem-2-Capitalized-Credits");
+        const Sem_2_Marks = localStorage.getItem("sem-2-Marks");
+
+        const semesterMarks = print_semester_1_and_2.querySelector(".second-semester-marks");
+        const semesterCredits = print_semester_1_and_2.querySelector(".second-semester-credits");
+        const semesterAverage = print_semester_1_and_2.querySelector(".second-semester-average");
+
+        semesterMarks.textContent = Sem_2_Marks;
+        semesterCredits.textContent = `${Sem_2_CapitalizedCredits} / 30`;
+        semesterAverage.textContent = Sem_2_Average;
+    }
+
+    // ========== Annual Grades 1&2 ===============
+
+    if(getSem_1_and_2_Annual_Present === "true") {
+        const sem_1_and_2_Annual_Marks = localStorage.getItem("sem-1-and-2-Annual-Marks");
+        const sem_1_and_2_Annual_Average = localStorage.getItem("sem-1-and-2-Annual-Average");
+        const sem_1_and_2_StudentStatus = localStorage.getItem("sem-1-and-2-student-status");
+        const sem_1_and_2_AnnualCredits = localStorage.getItem("sem-1-and-2-AllValidated-Credits");
+        const sem_1_and_2_TotalCredits = localStorage.getItem("All_Total_Validated-sem-1-and-2-Credits");
+
+        const annual_semester_marks = Print_annual_semesters_12.querySelector(".annual-semester-marks");
+        const annual_semester_AnnualCredits = Print_annual_semesters_12.querySelector(".annual-semester-credits");
+        const annual_semester_TotalCredits = Print_annual_semesters_12.querySelector(".total-semester-credits");
+        const annual_semester_status = Print_annual_semesters_12.querySelector(".new-student-status");
+        const annual_semester_average = Print_annual_semesters_12.querySelector(".annual-semester-average");
+
+        annual_semester_marks.textContent = sem_1_and_2_Annual_Marks;
+        annual_semester_AnnualCredits.textContent = `${sem_1_and_2_AnnualCredits} / 60`;
+        annual_semester_TotalCredits.textContent = `${sem_1_and_2_TotalCredits} / 60` ;
+        annual_semester_status.textContent = sem_1_and_2_StudentStatus;
+        annual_semester_average.textContent = sem_1_and_2_Annual_Average;
+    }
+
+
+    // ========== Per Semester Grades 3&4 ===============
+    if(getSem_3_Grades === "true") {
+        const Sem_3_Average = localStorage.getItem("sem-3-Average");
+        const Sem_3_CapitalizedCredits = localStorage.getItem("sem-3-Capitalized-Credits");
+        const Sem_3_Marks = localStorage.getItem("sem-3-Marks");
+
+        const semesterMarks = print_semester_3_and_4.querySelector(".semester-marks");
+        const semesterCredits = print_semester_3_and_4.querySelector(".semester-credits");
+        const semesterAverage = print_semester_3_and_4.querySelector(".semester-average");
+
+        semesterMarks.textContent = Sem_3_Marks;
+        semesterCredits.textContent = `${Sem_3_CapitalizedCredits} / 30`;
+        semesterAverage.textContent = Sem_3_Average;
+    }
+
+    if(getSem_4_Grades === "true") {
+        const Sem_4_Average = localStorage.getItem("sem-4-Average");
+        const Sem_4_CapitalizedCredits = localStorage.getItem("sem-4-Capitalized-Credits");
+        const Sem_4_Marks = localStorage.getItem("sem-4-Marks");
+
+        const semesterMarks = print_semester_3_and_4.querySelector(".second-semester-marks");
+        const semesterCredits = print_semester_3_and_4.querySelector(".second-semester-credits");
+        const semesterAverage = print_semester_3_and_4.querySelector(".second-semester-average");
+
+        semesterMarks.textContent = Sem_4_Marks;
+        semesterCredits.textContent = `${Sem_4_CapitalizedCredits} / 30`;
+        semesterAverage.textContent = Sem_4_Average;
+    }
+
+    // ========== Annual Grades 3&4 ===============
+
+    if(getSem_3_and_4_Annual_Present === "true") { 
+        const sem_3_and_4_Annual_Marks = localStorage.getItem("sem-3-and-4-Annual-Marks");
+        const sem_3_and_4_Annual_Average = localStorage.getItem("sem-3-and-4-Annual-Average");
+        const sem_3_and_4_StudentStatus = localStorage.getItem("sem-3-and-4-student-status");
+        const sem_3_and_4_AnnualCredits = localStorage.getItem("sem-3-and-4-AllValidated-Credits");
+        const sem_3_and_4_TotalCredits = localStorage.getItem("All_Total_Validated-sem-3-and-4-Credits");
+
+        const annual_semester_marks = Print_annual_semesters_34.querySelector(".annual-semester-marks");
+        const annual_semester_AnnualCredits = Print_annual_semesters_34.querySelector(".annual-semester-credits");
+        const annual_semester_TotalCredits = Print_annual_semesters_34.querySelector(".total-semester-credits");
+        const annual_semester_status = Print_annual_semesters_34.querySelector(".new-student-status");
+        const annual_semester_average = Print_annual_semesters_34.querySelector(".annual-semester-average");
+
+        annual_semester_marks.textContent = sem_3_and_4_Annual_Marks;
+        annual_semester_AnnualCredits.textContent = `${sem_3_and_4_AnnualCredits} / 60`;
+        annual_semester_TotalCredits.textContent = `${sem_3_and_4_TotalCredits} / 120` ;
+        annual_semester_status.textContent = sem_3_and_4_StudentStatus;
+        annual_semester_average.textContent = sem_3_and_4_Annual_Average;
+    }
+
+
+    // ========== Per Semester Grades 5&6 ===============
+    if(getSem_5_Grades === "true") {
+        const Sem_5_Average = localStorage.getItem("sem-5-Average");
+        const Sem_5_CapitalizedCredits = localStorage.getItem("sem-5-Capitalized-Credits");
+        const Sem_5_Marks = localStorage.getItem("sem-5-Marks");
+
+        const semesterMarks = print_semester_5_and_6.querySelector(".semester-marks");
+        const semesterCredits = print_semester_5_and_6.querySelector(".semester-credits");
+        const semesterAverage = print_semester_5_and_6.querySelector(".semester-average");
+
+        semesterMarks.textContent = Sem_5_Marks;
+        semesterCredits.textContent = `${Sem_5_CapitalizedCredits} / 30`;
+        semesterAverage.textContent = Sem_5_Average;
+    }
+
+    if(getSem_6_Grades === "true") {
+        const Sem_6_Average = localStorage.getItem("sem-6-Average");
+        const Sem_6_CapitalizedCredits = localStorage.getItem("sem-6-Capitalized-Credits");
+        const Sem_6_Marks = localStorage.getItem("sem-6-Marks");
+
+        const semesterMarks = print_semester_5_and_6.querySelector(".second-semester-marks");
+        const semesterCredits = print_semester_5_and_6.querySelector(".second-semester-credits");
+        const semesterAverage = print_semester_5_and_6.querySelector(".second-semester-average");
+
+        semesterMarks.textContent = Sem_6_Marks;
+        semesterCredits.textContent = `${Sem_6_CapitalizedCredits} / 30`;
+        semesterAverage.textContent = Sem_6_Average;
+    }
+
+    // ========== Annual Grades 5&6 ===============
+
+    if(getSem_5_and_6_Annual_Present === "true") { 
+        const sem_5_and_6_Annual_Marks = localStorage.getItem("sem-5-and-6-Annual-Marks");
+        const sem_5_and_6_Annual_Average = localStorage.getItem("sem-5-and-6-Annual-Average");
+        const sem_5_and_6_StudentStatus = localStorage.getItem("sem-5-and-6-student-status");
+        const sem_5_and_6_AnnualCredits = localStorage.getItem("sem-5-and-6-AllValidated-Credits");
+        const sem_5_and_6_TotalCredits = localStorage.getItem("All_Total_Validated-sem-5-and-6-Credits");
+
+        const annual_semester_marks = Print_annual_semesters_56.querySelector(".annual-semester-marks");
+        const annual_semester_AnnualCredits = Print_annual_semesters_56.querySelector(".annual-semester-credits");
+        const annual_semester_TotalCredits = Print_annual_semesters_56.querySelector(".total-semester-credits");
+        const annual_semester_status = Print_annual_semesters_56.querySelector(".new-student-status");
+        const annual_semester_average = Print_annual_semesters_56.querySelector(".annual-semester-average");
+
+        annual_semester_marks.textContent = sem_5_and_6_Annual_Marks;
+        annual_semester_AnnualCredits.textContent = `${sem_5_and_6_AnnualCredits} / 60`;
+        annual_semester_TotalCredits.textContent = `${sem_5_and_6_TotalCredits} / 180` ;
+        annual_semester_status.textContent = sem_5_and_6_StudentStatus;
+        annual_semester_average.textContent = sem_5_and_6_Annual_Average;
+    }
+
+     // ========== General Grade ===============
+    if(getSem_Complete_Annual_Present === "true") {
+        const Complete_Average = localStorage.getItem("Complete-Average");
+        const Complete_Marks = localStorage.getItem("Complete-Marks");
+        const TotalAllCredits = localStorage.getItem("TotalAllCredits");
+        const BachelorStudentStatus = localStorage.getItem("Bachelor-student-status");
+
+        const semesterMarks = document.querySelector(".general-semester-marks");
+        const semesterCredits = document.querySelector(".general-semester-credits");
+        const semesterStudentStatus = document.querySelector(".general-student-status");
+        const semesterAverage = document.querySelector(".general-semester-average");
+
+        semesterMarks.textContent = Complete_Marks;
+        semesterCredits.textContent = `${TotalAllCredits} / 180`;
+        semesterStudentStatus.textContent = BachelorStudentStatus;
+        semesterAverage.textContent = Complete_Average;
+    }
+
+        docSpinner.style.display = "block";
+        submitText.textContent = "Un instant...";
+        const UserName = userNameInp.value.trim();
+        const UserFirstName = userFirstNameInp.value.trim();
+        const UserAge = userAgeInp.value.trim();
+        
+        printUserName.textContent = UserName;
+        printUserFirstname.textContent = UserFirstName;
+        printUserAge.textContent = UserAge + " ans";
+
+        setTimeout(() => {
+            docSpinner.style.display = "none";
+            submitText.textContent = "Valider";
+            printFormContainer.style.display = "none";
+            window.print()
+        }, 2000)
+    })
+    
+}
+
+PrintedResults();

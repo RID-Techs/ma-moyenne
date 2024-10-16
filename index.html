@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Ma-moyenne, moyenne">
+    <meta name="description" content="Calculer ma moyenne">
+    <meta name="author" content="RID Tech">
     <link rel="shortcut icon" href="./learns.png" type="image/x-icon">
     <link rel="stylesheet" href="./calc.css">
     <title>Ma-moyenne</title>
 </head>
 <body>
     <header>
-
         <div class="site-info">
             <h1><span id="average-icon">📑</span> Ma Moyenne</h1>
             <div class="website-creator">
@@ -24,34 +26,64 @@
 
         <div class="welcome-message-container">
             <div class="welcome-message-holder">
-                <div class="welcome-message">
-                    <p id="note">Note Importante</p>
-
-                    <div id="message-content">
+                <div class="welcome-message-holder-2">
+                    <div class="welcome-message">
+                        <p id="note">Note Importante</p>
+    
+                        <div id="message-content">
+                            <p>
+                                <strong><em><span id="average-icon">📑</span> Ma Moyenne</em></strong> est un site web à but non lucratif et purement éducatif, mis en place par <a id="website-owner" href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
+                                    E-learning
+                                </a> pour permettre aux étudiants de calculer facilement leur moyenne, afin de leur permettre d'analyser leur niveau de travail et de s'améliorer progressivement. Les étudiants peuvent se sentir en sécurité sur le site, car leurs données ne sont pas collectées.
+                            </p>
+                            <div class="btn-group">
+                                <button id="simple-btn" type="button">Hi</button>
+                                <button id="next-btn" type="button">Suivant</button>
+                            </div>
+                        </div>
+    
+                    <div id="message-content-2">
                         <p>
-                            <strong><em><span id="average-icon">📑</span> Ma Moyenne</em></strong> est un site web à but non lucratif et purement éducatif, mis en place par <a id="website-owner" href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
+    
+                            <a id="website-owner" href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
                                 E-learning
-                            </a> pour permettre aux étudiants de calculer facilement leur moyenne, afin de leur permettre d'analyser leur niveau de travail et de s'améliorer progressivement. Les étudiants peuvent se sentir en sécurité sur le site, car leurs données ne sont pas collectées.
+                            </a> est un site web d'apprentissage dédié à tout étudiant(e) du département d'Études Anglophones, visant à permettre aux étudiants de ce département de mieux comprendre leurs cours, de retransmettre les connaissances acquises par le biais des docteurs, et de valider avec aisance les Unités d'Enseignement.
                         </p>
                         <div class="btn-group">
-                            <button id="simple-btn" type="button">Hi</button>
-                            <button id="next-btn" type="button">Suivant</button>
+                            <button id="prev-btn" type="button">Précédent</button>
+                            <button id="close-btn" type="button">Fermer</button>
                         </div>
                     </div>
-
-                <div id="message-content-2">
-                    <p>
-
-                        <a id="website-owner" href="https://e-learning-learning-space-front.onrender.com/" target="_blank">
-                            E-learning
-                        </a> est un site web d'apprentissage dédié à tout étudiant(e) du département d'Études Anglophones, visant à permettre aux étudiants de ce département de mieux comprendre leurs cours, de retransmettre les connaissances acquises par le biais des docteurs, et de valider avec aisance les Unités d'Enseignement.
-                    </p>
-                    <div class="btn-group">
-                        <button id="prev-btn" type="button">Précédent</button>
-                        <button id="close-btn" type="button">Fermer</button>
+    
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="new-print-feature">
+            <div class="print-feature-content">
+                <div class="print-feature">
+                    <h3 style="color: #700000;">Nouvelle Fonctionnalité <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M11.933 5h-6.933v16h13v-8" />
+                        <path d="M14 17h-5" />
+                        <path d="M9 13h5v-4h-5z" />
+                        <path d="M15 5v-2" />
+                        <path d="M18 6l2 -2" />
+                        <path d="M19 9h2" />
+                      </svg> </h3>
+                      <span style="text-align: center;">----</span>
+                    <p>Vous pouvez désormais <strong><em>Imprimer</em></strong> vos divers résultats de vos moyennes au format PDF, et les avoir avec vous partout où vous allez sans avoir à vous reconnecter encore.</p>
+                    <button id="clear-storage" type="button">Compris</button>
                 </div>
             </div>
         </div>
@@ -71,8 +103,35 @@
                 </div>
             </div>
         </div>
+
+        <div class="print-form-container">
+            <div class="print-form-wrapper">
+                <div class="print-form">
+                    <form>
+                        <div class="inputs-group">
+                            <div class="close-print-btn">&cross;</div>
+                            <div class="user-infos">
+                                <label for="user-name-inp">Votre Nom : </label>
+                                <input type="text" id="user-name-inp" placeholder="Entrez votre Nom">
+                            </div>
+                            <div class="user-infos">
+                                <label for="user-firstname-inp">Votre Prénom : </label>
+                                <input type="text" id="user-firstname-inp" placeholder="Entrez votre Prénom">
+                            </div>
+                            <div class="user-infos">
+                                <label for="user-age-inp">Votre Âge : </label>
+                                <input type="text" id="user-age-inp" placeholder="Entrez votre Âge">
+                            </div>
+                        </div>
+                        <button id="submit-btn" type="submit"> <div id="doc-spinner"></div> <span id="submit-text">Valider</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </header>
-    <div class="container">
+
+    <div class="container web-content">
         <p id="container-message"> "Gardez un œil sur votre niveau de travail en calculant facilement votre moyenne."</p>
 
     <div class="sem-1">
@@ -128,6 +187,7 @@
                 <div class="calculate-btn">
                     <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
                 </div>
+                <button class="print-btn" type="button">Imprimer</button>
             </div>
         </div>
         </div>
@@ -186,6 +246,7 @@
                 <div class="calculate-btn">
                     <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
                 </div>
+                <button class="print-btn" type="button">Imprimer</button>
             </div>
         </div>
         </div>
@@ -221,7 +282,7 @@
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
-                            <p>Satus de l'étudiant : <span id="Student-status">----</span></p>
+                            <p>Satut de l'Étudiant(e) : <span id="Student-status">----</span></p>
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
@@ -231,6 +292,7 @@
                     <div class="calculate-annual">
                         <button id="calculate-annual-grade" type="button">Calculer ma moyenne annuelle</button>
                     </div>
+                    <button class="print-btn" type="button">Imprimer</button>
                 </div>
             </div>
             </div>
@@ -291,6 +353,7 @@
                 <div class="calculate-btn">
                     <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
                 </div>
+                <button class="print-btn" type="button">Imprimer</button>
             </div>
         </div>
         </div>
@@ -349,6 +412,7 @@
                 <div class="calculate-btn">
                     <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
                 </div>
+                <button class="print-btn" type="button">Imprimer</button>
             </div>
         </div>
         </div>
@@ -384,7 +448,7 @@
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
-                            <p>Satus de l'étudiant : <span id="Student-status">----</span></p>
+                            <p>Satut de l'Étudiant(e) : <span id="Student-status">----</span></p>
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
@@ -394,6 +458,7 @@
                     <div class="calculate-annual">
                         <button id="calculate-annual-grade" type="button">Calculer ma moyenne annuelle</button>
                     </div>
+                    <button class="print-btn" type="button">Imprimer</button>
                 </div>
             </div>
             </div>
@@ -454,6 +519,7 @@
                 <div class="calculate-btn">
                     <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
                 </div>
+                <button class="print-btn" type="button">Imprimer</button>
             </div>
         </div>
         </div>
@@ -512,6 +578,7 @@
                 <div class="calculate-btn">
                     <button id="calculate-again" type="button">Calculer ma moyenne à nouveau</button>
                 </div>
+                <button class="print-btn" type="button">Imprimer</button>
             </div>
         </div>
         </div>
@@ -547,7 +614,7 @@
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
-                            <p>Satus de l'étudiant : <span id="Student-status">----</span></p>
+                            <p>Satut de l'Étudiant(e) : <span id="Student-status">----</span></p>
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
@@ -557,6 +624,7 @@
                     <div class="calculate-annual">
                         <button id="calculate-annual-grade" type="button">Calculer ma moyenne annuelle</button>
                     </div>
+                    <button class="print-btn" type="button">Imprimer</button>
                 </div>
             </div>
             </div>
@@ -589,7 +657,7 @@
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
-                            <p>Satus de l'étudiant : <span id="Student-status">----</span></p>
+                            <p>Satut de l'Étudiant(e) : <span id="Student-status">----</span></p>
                         </div>
                         <hr class="separator">
                         <div class="moyenne">
@@ -599,11 +667,289 @@
                     <div class="calculate-annual">
                         <button id="calculate-all-semesters-grade" type="button">Calculer ma moyenne générale</button>
                     </div>
+                    <button class="print-btn" type="button">Imprimer</button>
                 </div>
             </div>
             </div>
     </div>
 
+</div>
+
+<div class="print-content">
+    <div class="print-container">
+        <div class="print-header">
+            <div class="print-divider-wrapper">
+                <hr id="print-divider">
+            </div>
+            <div class="print-header-top">
+                <div class="print-user-info">
+                    <p>Nom : <span id="print-user-name">----</span> </p>
+                    <p>Prénom : <span id="print-user-firstname">----</span> </p>
+                    <p>Âge : <span id="print-user-age">----</span></p>
+                </div>
+                <div class="print-date">
+                    <p>Date : <span id="print-date">--/--/--</span></p>
+                </div>
+            </div>
+            <div class="print-title">
+                <h1>Résultats de votre moyenne</h1>
+            </div>
+        </div>
+
+        <div class="print-body">
+            <div class="print-all-semester annual-semesters-12">
+                <div class="print-semester-1-and-2">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="print-semester-title" colspan="3">~ Semestre 1 ~</th>
+                            </tr>
+                            <tr>
+                                <th class="print-semester-items">Nombre de Points Obtenus</th>
+                                <th class="print-semester-items">Nombre Semestriel de Crédits Validés</th>
+                                <th class="print-semester-items">Moyenne du Semestre 1</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr>
+                                <td class="semester-marks">--</td>
+                                <td class="semester-credits">--</td>
+                                <td class="semester-average">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="print-semester-title" colspan="3">~ Semester 2 ~</th>
+                            </tr>
+                            <tr>
+                                <th class="print-semester-items">Nombre de Points Obtenus</th>
+                                <th class="print-semester-items">Nombre Semestriel de Crédits Validés</th>
+                                <th class="print-semester-items">Moyenne du Semestre 2</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr>
+                                <td class="second-semester-marks">--</td>
+                                <td class="second-semester-credits">--</td>
+                                <td class="second-semester-average">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="print-semester-title" colspan="5">~ Semestres 1 & 2 (Moyenne anuelle) ~</th>
+                        </tr>
+                        <tr>
+                            <th class="print-semester-items">Nombre de Points Obtenus</th>
+                            <th class="print-semester-items">Nombre Annuel de Crédits Validés</th>
+                            <th class="print-semester-items">Nombre Total de Crédits Validés</th>
+                            <th class="print-semester-items">Statut de l'Étudiant(e)</th>
+                            <th class="print-semester-items">Moyenne annuelle</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr>
+                            <td class="annual-semester-marks">--</td>
+                            <td class="annual-semester-credits">--</td>
+                            <td class="total-semester-credits">--</td>
+                            <td class="new-student-status">--</td>
+                            <td class="annual-semester-average">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="print-divider-wrapper-2">
+                <hr class="print-divider-2">
+            </div>
+
+            <div class="print-all-semester annual-semesters-34">
+                <div class="print-semester-3-and-4">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="print-semester-title" colspan="3">~ Semestre 3 ~</th>
+                            </tr>
+                            <tr>
+                                <th class="print-semester-items">Nombre de Points Obtenus</th>
+                                <th class="print-semester-items">Nombre Semestriel de Crédits Validés</th>
+                                <th class="print-semester-items">Moyenne du Semestre 3</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr>
+                                <td class="semester-marks">--</td>
+                                <td class="semester-credits">--</td>
+                                <td class="semester-average">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="print-semester-title" colspan="3">~ Semester 4 ~</th>
+                            </tr>
+                            <tr>
+                                <th class="print-semester-items">Nombre de Points Obtenus</th>
+                                <th class="print-semester-items">Nombre Semestriel de Crédits Validés</th>
+                                <th class="print-semester-items">Moyenne du Semestre 4</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr>
+                                <td class="second-semester-marks">--</td>
+                                <td class="second-semester-credits">--</td>
+                                <td class="second-semester-average">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="print-semester-title" colspan="5">~ Semestres 3 & 4 (Moyenne anuelle) ~</th>
+                        </tr>
+                        <tr>
+                            <th class="print-semester-items">Nombre de Points Obtenus</th>
+                            <th class="print-semester-items">Nombre Annuel de Crédits Validés</th>
+                            <th class="print-semester-items">Nombre Total de Crédits Validés</th>
+                            <th class="print-semester-items">Statut de l'Étudiant(e)</th>
+                            <th class="print-semester-items">Moyenne annuelle</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr>
+                            <td class="annual-semester-marks">--</td>
+                            <td class="annual-semester-credits">--</td>
+                            <td class="total-semester-credits">--</td>
+                            <td class="new-student-status">--</td>
+                            <td class="annual-semester-average">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="print-divider-wrapper-2">
+                <hr class="print-divider-2">
+            </div>
+
+            <div class="print-all-semester annual-semesters-56">
+                <div class="print-semester-5-and-6">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="print-semester-title" colspan="3">~ Semestre 5 ~</th>
+                            </tr>
+                            <tr>
+                                <th class="print-semester-items">Nombre de Points Obtenus</th>
+                                <th class="print-semester-items">Nombre Semestriel de Crédits Validés</th>
+                                <th class="print-semester-items">Moyenne du Semestre 5</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr>
+                                <td class="semester-marks">--</td>
+                                <td class="semester-credits">--</td>
+                                <td class="semester-average">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="print-semester-title" colspan="3">~ Semester 6 ~</th>
+                            </tr>
+                            <tr>
+                                <th class="print-semester-items">Nombre de Points Obtenus</th>
+                                <th class="print-semester-items">Nombre Semestriel de Crédits Validés</th>
+                                <th class="print-semester-items">Moyenne du Semestre 6</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr>
+                                <td class="second-semester-marks">--</td>
+                                <td class="second-semester-credits">--</td>
+                                <td class="second-semester-average">--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="print-semester-title" colspan="5">~ Semestres 5 & 6 (Moyenne anuelle) ~</th>
+                        </tr>
+                        <tr>
+                            <th class="print-semester-items">Nombre de Points Obtenus</th>
+                            <th class="print-semester-items">Nombre Annuel de Crédits Validés</th>
+                            <th class="print-semester-items">Nombre Total de Crédits Validés</th>
+                            <th class="print-semester-items">Statut de l'Étudiant(e)</th>
+                            <th class="print-semester-items">Moyenne annuelle</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr>
+                            <td class="annual-semester-marks">--</td>
+                            <td class="annual-semester-credits">--</td>
+                            <td class="total-semester-credits">--</td>
+                            <td class="new-student-status">--</td>
+                            <td class="annual-semester-average">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="print-divider-wrapper-2">
+                <hr class="print-divider-2">
+            </div>
+
+            <div class="print-general-grade">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="print-semester-title" colspan="5">~ Semestres 1 & 6 (180 Crédits) ~</th>
+                        </tr>
+                        <tr>
+                            <th class="print-semester-items">Nombre de Points Obtenus</th>
+                            <th class="print-semester-items">Nombre Total de Crédits Validés</th>
+                            <th class="print-semester-items">Statut de l'Étudiant(e)</th>
+                            <th class="print-semester-items">Moyenne générale</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr>
+                            <td class="general-semester-marks">--</td>
+                            <td class="general-semester-credits">--</td>
+                            <td class="general-student-status">--</td>
+                            <td class="general-semester-average">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
 </div>
 
 <footer>

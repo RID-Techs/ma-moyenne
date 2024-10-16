@@ -27,15 +27,23 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     padding: 1em;
+    z-index: 2000;
     background-color: #25141486;
     backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+}
+
+.welcome-message-holder-2 {
+    height: 100vh;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .welcome-message {
+    max-width: 70%;
     background-color: rgba(255, 255, 224, 0.911);
     padding: 1em;
     border-radius: 5px;
@@ -202,7 +210,7 @@ header {
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 1000;
+        z-index: 2000;
         background-color: rgba(0, 0, 0, 0.432);
         backdrop-filter: blur(9px);
         -webkit-backdrop-filter: blur(9px);
@@ -638,12 +646,319 @@ a.suggetions-container {
     height: 24px;
     fill: #fff;
 }
-@media screen and (max-width: 476px) {
+
+.new-print-feature {
+    display: none;
+}
+
+.print-feature-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #000000d0;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+}
+
+#clear-storage {
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #7c0000;
+    color: #fff;
+    padding: 0.4em;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+#clear-storage:hover{
+    color: #7c0000;
+    background-color: #fff;
+}
+
+.print-feature {
+    max-width: 50%;
+    background-color: #fffed0;
+    padding: 0.5em;
+    border-radius: 5px;
+    display: grid;
+    gap: 1em 0em;
+    place-items: center;
+}
+
+.print-content {
+    display: none;
+    margin-top: 5em;
+}
+
+.print-container {
+    padding: 2em;
+}
+.print-divider-wrapper{
+    position: relative;
+    padding-bottom: 2em;
+}
+.print-divider-wrapper-2 {
+    position: relative;
+    margin-top: 1em;
+    padding-bottom: 6em;
+}
+.print-divider-wrapper::after{
+    position: absolute;
+    content: "✧";
+    font-size: 2rem;
+    background-color: rgb(250, 253, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+.print-divider-wrapper-2::after{
+    position: absolute;
+    content: "༆ ༆ ༆ ༆";
+    font-size: 2rem;
+    background-color: rgb(250, 253, 255);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.3em;
+    z-index: -1;
+}
+#print-divider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    border: 2px dashed rgb(19, 17, 17);
+    z-index: -1;
+}
+.print-divider-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    border: 2px dashed rgb(19, 17, 17);
+    z-index: -1;
+}
+.print-header-top {
+    display: flex;
+    justify-content: space-between;
+}
+.print-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.print-title h1 {
+    text-align: center;
+    padding-bottom: 0.2em;
+    border-bottom: 1px dotted rgb(19, 17, 17);
+}
+.print-all-semester {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.print-semester-1-and-2, .print-semester-3-and-4, .print-semester-5-and-6 {
+    display: flex;
+}
+.print-general-grade {
+    display: flex;
+    justify-content: center;
+}
+.print-body table {
+    margin-top: 1em;
+    border: 2px solid rgb(19, 17, 17);
+}
+
+.print-body table thead .print-semester-items {
+    border: 1px dashed rgb(19, 17, 17);
+    padding: 0.5em;
+}
+
+.print-semester-title {
+    border-left: 2px solid rgb(19, 17, 17);
+    border-right: 2px solid rgb(19, 17, 17);
+    border-bottom: 2px solid rgb(19, 17, 17);
+    border-bottom-left-radius: 90px;
+    border-bottom-right-radius: 90px;
+    padding: 0.5em;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.print-body table tbody td {
+    text-align: center;
+    border: 1px dashed rgb(19, 17, 17);
+    padding: 0.5em;
+}
+
+.print-btn {
+    cursor: pointer;
+    margin-top: 1em;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #7c3800;
+    color: #fff;
+    padding: 0.3em;
+    transition: all 0.2s ease-in-out;
+}
+
+.print-btn:hover{
+    color: #7c3800;
+    background-color: #fff;
+}
+
+.print-form-container {
+    display: none;
+}
+
+.print-form-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #00000094;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.close-print-btn{
+    cursor: pointer;
+    font-size: 2rem;
+    color: #707070;
+    transition: all 0.2s ease-in-out;
+}
+
+.close-print-btn:hover {
+    filter: drop-shadow(2px 2px 2px #000);
+}
+
+.print-form {
+    background-color: rgb(255, 248, 186);
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.inputs-group {
+    display: grid;
+    gap: 1em 0em;
+}
+
+.inputs-group input {
+    font-size: 1rem;
+    padding: 0.5em;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    box-shadow: inset 2px 2px 2px #ccc;
+}
+.user-infos {
+    display: grid;
+    gap: 0.3em 0em;
+}
+
+#submit-btn{
+    cursor: pointer;
+    float: right;
+    margin-top: 1em;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    padding: 0.3em;
+    border-radius: 5px;
+    background-color: #7c3800;
+    color: #fff;
+    filter: drop-shadow(2px 2px 2px #000);
+    display: flex;
+    gap: 0em 0.3em;
+    transition: all 0.2s ease-in-out;
+}
+
+#submit-btn:hover{
+    color: #7c3800;
+    background-color: #fff;
+}
+
+#doc-spinner {
+    display: none;
+    height: 20px;
+    width: 20px;
+    border: 2px solid #ffffff23;
+    border-top: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    border-radius: 50%;
+    background-color: transparent;
+    animation: docspin 0.6s linear infinite;
+    transition: all 0.2s ease-in-out;
+}
+
+@keyframes docspin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+@media only screen and (max-width: 476px) {
     .container {
         margin-top: 8em;
         padding: 1em;
     }
+    .welcome-message{
+        max-width: none;
+    }
     .break-sentence {
         display: block;
+    }
+    .print-content {
+        margin-top: 10em;
+    }
+    .print-feature {
+        max-width: none;
+    }
+}
+
+@media print {
+    body {
+        background-color: rgb(250, 253, 255);
+        height: 50vh;
+        overflow: hidden;
+    }
+    .web-content {
+        display: none;
+    }
+    .print-form-container {
+        display: none;
+    }
+    .print-form-wrapper {
+        display: none;
+    }
+    .print-content {
+        display: block;
+        margin-top: 0.2em;
+    }
+    header {
+        background-color: #f7fffd;
+        position: relative;
+        box-shadow: 2px 0px 5px rgb(0, 0, 0);
     }
 }
