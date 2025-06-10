@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+.container {
+  padding: 1em;
+}
+
+.site-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  flex-wrap: wrap;
+  gap: 1em;
+  box-shadow: 2px 0px 3px #333;
+}
+
+#website-owner{
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0.5em;
+    font-size: 1rem;
+    margin-right: 0.3em;
+    font-family: monospace;
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #fff;border-radius: 5px;
+    text-shadow: 2px 2px 2px #290303;
+    background-image: linear-gradient(12deg, rgb(0, 88, 110), rgb(1, 230, 230));
+    transition: all 0.2s ease-in-out;
+}
+
+#paul-uk-text {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+#paul-uk-description {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 0.5em;
+  color: #555;
+}
+
+.tuto-section {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.video-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(165, 42, 42, 0.479);
+  background-image: linear-gradient(to left, #00000034, rgba(41, 30, 73, 0.288)), url("./paul_uk_pic.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.video-holder a {
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: rgba(226, 238, 228, 0.726);
+  padding: 0.5em;
+  border-radius: 5px;
+  backdrop-filter: blur(12px);
+  color: #021553;
+  box-shadow: 5px 0px 3px #48747481, -5px 0px 3px #46565781, 0px 5px 3px #776b8181, 0px -5px 3px #545c5e81;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #021553;
+    color: rgba(207, 230, 253, 0.768);
+    box-shadow: 5px 0px 5px #053f1d81, -5px 0px 5px #053f1d81, 0px 5px 5px #053f1d81, 0px -5px 5px #053f1d81;
+  }
+}
